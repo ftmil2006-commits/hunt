@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body data-page="p5">
+
+<h2>Question 5</h2>
+
+<p>
+NSS helps when something goes wrong.
+
+In programming, what handles errors when normal execution fails?
+</p>
+
+<input id="ans">
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  if (ans.value.trim() === "exception"||ans.value.trim() === "Exception") {
+    msg.innerText = "✅ Correct! move to the location of next Qr and search near or in the Library";
+     document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+  } else {
+    msg.innerText = "❌ Wrong.";
+  }
+}
+</script>
+
+<script src="secure.js"></script>
+</body>
+</html>

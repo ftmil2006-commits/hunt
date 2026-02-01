@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<body data-page="p2">
+
+<h2>Question 2</h2>
+
+<p>
+Observe carefully.
+Entry and exit never cross paths.
+What rule guarantees this order?
+
+</p>
+
+<input id="ans">
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  if (ans.value.trim() === "QUEUE") {
+    msg.innerText = "✅ Correct! Move ahead to the statistic Department and Scan the next Qr.";
+    document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+  } else {
+    msg.innerText = "❌ Wrong.";
+  }
+}
+</script>
+
+<script src="secure.js"></script>
+</body>
+</html>

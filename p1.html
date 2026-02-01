@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<body data-page="p1">
+<h2>Question 1</h2>
+
+<p>
+This board exists to reduce repeated work and speed up processes.
+In a computer, what does the same job without storing everything permanently?
+
+</p>
+
+<input id="ans" placeholder="Answer">
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  if (ans.value.trim() === "CACHE") {
+msg.innerText = "✅ Correct! go to quadrangle and search for the next Qr.";
+document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+  } else {
+    msg.innerText = "❌ Wrong answer.";
+  }
+}
+</script>
+
+<script src="secure.js"></script>
+</body>
+</html>

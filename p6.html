@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body data-page="p6">
+
+<h2>Question 6</h2>
+
+<p>
+A library arranges books so that searching is faster than checking one by one.
+
+Which data structure does this?
+</p>
+
+<input id="ans">
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  if (ans.value.trim() === "Tree"||ans.value.trim() === "tree") {
+    msg.innerText = "✅ Correct! The next Qr is in the chemistry lab.";
+     document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+  } else {
+    msg.innerText = "❌ Wrong.";
+  }
+}
+</script>
+
+<script src="secure.js"></script>
+</body>
+</html>

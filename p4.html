@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body data-page="p4">
+
+<h2>Question 4</h2>
+
+<p>
+You are blocked by vehicles in front of you.
+
+Only one direction is possible.
+
+What rule decides who leaves first?
+</p>
+
+<input id="ans">
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  if (ans.value.trim() === "Stack"||ans.value.trim() === "stack") {
+    document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+    msg.innerText = "✅ Correct! move to the location of next Qr and its to find NSS room ";
+  } else {
+    msg.innerText = "❌ Wrong.";
+  }
+}
+</script>
+
+<script src="secure.js"></script>
+</body>
+</html>

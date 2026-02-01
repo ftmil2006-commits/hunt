@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body data-page="p9">
+
+<h2>Question 9</h2>
+
+<p>
+    Solve the errors get the answer and get the final clue.
+#include <stdio.h>
+
+int main() {
+    int growth = 19;
+    while (growth <= 20) {
+        printf("%S " growth);
+        growth+;
+    }
+    return 0;
+}
+
+</p>
+
+<input id="ans">
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  if (ans.value.trim() === "19 20") {
+    msg.innerText = "✅ Correct! The next bonus is near the staircase of envoirment class under the table get it😎 and come to room no. 45 dude🤗 .";
+  } else {
+    msg.innerText = "❌ Wrong.";
+  }
+}
+</script>
+
+<script src="secure.js"></script>
+</body>
+</html>

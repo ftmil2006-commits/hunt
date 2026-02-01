@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body data-page="p8">
+
+<h2>Question 8</h2>
+
+<p>
+While climbing stairs, you repeat the same action until you stop.
+
+In programming, what do we call a function that keeps calling itself until a base condition is reached?
+</p>
+
+<input id="ans">
+<button onclick="check()">Submit</button>
+<p id="msg"></p>
+
+<script>
+function check() {
+  if (ans.value.trim() === "Recursion"||ans.value.trim() === "recursion") {
+    msg.innerText = "✅ Correct! The next Qr is in the CS Lab .";
+        document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+  } else {
+    msg.innerText = "❌ Wrong.";
+  }
+}
+</script>
+
+<script src="secure.js"></script>
+</body>
+</html>

@@ -23,11 +23,7 @@ fetch(`${API}?action=check&team=${team}`)
   });
 
 // ================= DISQUALIFY FUNCTION =================
-function disqualify(reason = "") {
-  fetch(`${API}?action=disqualify&team=${team}&page=${PAGE}`);
-  document.body.innerHTML = "<h1>❌ DISQUALIFIED</h1>";
-  throw new Error("Disqualified");
-}
+
 
 // ================= TAB / APP SWITCH =================
 document.addEventListener("visibilitychange", () => {
@@ -44,3 +40,4 @@ document.addEventListener("keydown", e => {
     e.preventDefault();
   }
 });
+

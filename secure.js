@@ -39,39 +39,24 @@ setInterval(() => {
 }, 10000);
 
 /******************** TIMER ********************/
-const timerKey = "timer_start_" + PAGE;
-const solvedKey = "solved_" + PAGE;
+// ================= TIMER CONFIG =================
+const TOTAL_TIME = 30; // seconds per page
+let timeLeft = TOTAL_TIME;
 
-let startTime = localStorage.getItem(timerKey);
-if (!startTime) {
-  startTime = Date.now();
-  localStorage.setItem(timerKey, startTime);
-}
-
-const timerDiv = document.getElementById("timer");
+// ================= TIMER DISPLAY =================
+const timerEl = document.getElementById("timer");
 
 const timerInterval = setInterval(() => {
-  const elapsed = Math.floor((Date.now() - startTime) / 1000);
-  const remaining = TIME_LIMIT - elapsed;
+  timeLeft--;
 
-  if (remaining <= 0) {
-    clearInterval(timerInterval);
-    timerDiv.innerText = "⏱️ TIME OVER";
-
-    document.getElementById("ans").disabled = true;
-    document.querySelector("button").disabled = true;
-
-    if (!localStorage.getItem(solvedKey)) {
-      document.getElementById("msg").innerText =
-        "❌ Time over. Move to next location.";
-    }
-    return;
+  if (timerEl) {
+    timerEl.innerText = `⏳ Time left: ${timeLeft}s`;
   }
 
-  const min = Math.floor(remaining / 60);
-  const sec = remaining % 60;
-  timerDiv.innerText =
-    `⏱️ Time left: ${min}:${sec.toString().padStart(2, "0")}`;
+  if (timeLeft <= 0) {
+    clearInterval(timerInterval);
+    disqualify("TIME_OVER");
+  }
 }, 1000);
 
 /******************** ANSWER LOCK (ON LOAD) ********************/
@@ -94,3 +79,4 @@ document.addEventListener("keydown", e => {
     e.preventDefault();
   }
 });
+

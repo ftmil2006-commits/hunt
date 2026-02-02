@@ -30,17 +30,23 @@ if (localStorage.getItem(solvedKey) === "true") {
   msg.innerText = "✅ Answer already accepted. Go to the next location.";
 }
 
-function check() {
-  if (localStorage.getItem(solvedKey)) return;
 
-  if (ans.value.trim().toUpperCase() === "CACHE") {
-    localStorage.setItem(solvedKey, "true");
-    ans.disabled = true;
-    document.querySelector("button").disabled = true;
-    msg.innerText = "✅ Correct! Go to quadrangle and search for the next QR.";
-  disableProtection();
+
+function check() {
+  const correct = "CACHE"||"cache;
+  const user = document.getElementById("ans").value.trim().toUpperCase();
+
+  if (user === correct) {
+    timerStopped = true;
+    clearInterval(timerInterval);
+
+    fetch(${API}?action=solve&team=${team}&page=${PAGE})
+      .then(() => {
+        document.getElementById("msg").innerText =
+          "✅ Correct! Go to quadrangle and search for the next QR.";
+      });
   } else {
-    msg.innerText = "❌ Wrong answer.";
+    document.getElementById("msg").innerText = "❌ Wrong answer";
   }
 }
 </script>
@@ -50,4 +56,5 @@ function check() {
 
 </body>
 </html>
+
 

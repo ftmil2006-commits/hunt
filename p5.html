@@ -19,6 +19,7 @@ function check() {
   if (ans.value.trim() === "exception"||ans.value.trim() === "Exception") {
     msg.innerText = "✅ Correct! move to the location of next Qr and search near or in the Library";
      document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+    disableProtection();
   } else {
     msg.innerText = "❌ Wrong.";
   }
@@ -28,3 +29,4 @@ function check() {
 <script src="secure.js"></script>
 </body>
 </html>
+

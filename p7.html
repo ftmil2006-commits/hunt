@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <body data-page="p7">
-
+<div id="timer" style="font-size:18px;color:red"></div>
 <h2>Question 7</h2>
 
 <p>
@@ -15,13 +15,32 @@ In computers, which memory behaves the same way?
 <p id="msg"></p>
 
 <script>
-function check() {
-  if (ans.value.trim() === "ROM"||ans.value.trim() === "rom") {
-    msg.innerText = "✅ Correct! The next Qr is in the Dark Room.";
-     document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+
+
+  function check() {
+  const CORRECT_ANSWER = "Rom"||"ROM"; // 👈 change per location
+  const user = document.getElementById("ans").value
+               .trim()
+               .toUpperCase();
+
+  if (user === CORRECT_ANSWER) {
+
+    // 🛑 STOP TIMER
+    timerStopped = true;
+    clearInterval(timerInterval);
+
+    // 🔓 DISABLE ALL ANTI-CHEAT PROTECTION
     disableProtection();
+
+    // ✅ SAVE SUCCESS TO SHEET
+    fetch(${API}?action=solve&team=${team}&page=${PAGE})
+      .then(() => {
+        document.getElementById("msg").innerText =
+          "✅ Correct! The next Qr is in the Dark Room.";
+      });
+
   } else {
-    msg.innerText = "❌ Wrong.";
+    document.getElementById("msg").innerText = "❌ Wrong answer";
   }
 }
 </script>
@@ -29,4 +48,5 @@ function check() {
 <script src="secure.js"></script>
 </body>
 </html>
+
 

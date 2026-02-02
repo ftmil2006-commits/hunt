@@ -20,6 +20,7 @@ function check() {
   if (ans.value.trim() === "QUEUE") {
     msg.innerText = "✅ Correct! Move ahead to the statistic Department and Scan the next Qr.";
     document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+ disableProtection();
   } else {
     msg.innerText = "❌ Wrong.";
   }
@@ -29,3 +30,4 @@ function check() {
 <script src="secure.js"></script>
 </body>
 </html>
+

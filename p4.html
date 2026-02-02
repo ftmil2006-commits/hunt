@@ -3,7 +3,7 @@
 <body data-page="p4">
 
 <h2>Question 4</h2>
-
+<div id="timer" style="font-size:18px;color:red"></div>
 <p>
 You are blocked by vehicles in front of you.
 
@@ -17,13 +17,31 @@ What rule decides who leaves first?
 <p id="msg"></p>
 
 <script>
-function check() {
-  if (ans.value.trim() === "Stack"||ans.value.trim() === "stack") {
-    msg.innerText = "✅ Correct! move to the location of next Qr and its to find NSS room ";
- document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+
+  function check() {
+  const CORRECT_ANSWER = "Stack"; // 👈 change per location
+  const user = document.getElementById("ans").value
+               .trim()
+               .toUpperCase();
+
+  if (user === CORRECT_ANSWER) {
+
+    // 🛑 STOP TIMER
+    timerStopped = true;
+    clearInterval(timerInterval);
+
+    // 🔓 DISABLE ALL ANTI-CHEAT PROTECTION
     disableProtection();
+
+    // ✅ SAVE SUCCESS TO SHEET
+    fetch(${API}?action=solve&team=${team}&page=${PAGE})
+      .then(() => {
+        document.getElementById("msg").innerText =
+          "✅ Correct! move to the location of next Qr and its to find NSS room ";
+      });
+
   } else {
-    msg.innerText = "❌ Wrong.";
+    document.getElementById("msg").innerText = "❌ Wrong answer";
   }
 }
 </script>
@@ -31,4 +49,5 @@ function check() {
 <script src="secure.js"></script>
 </body>
 </html>
+
 

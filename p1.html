@@ -30,21 +30,28 @@ if (localStorage.getItem(solvedKey) === "true") {
   msg.innerText = "✅ Answer already accepted. Go to the next location.";
 }
 
-
-
 function check() {
-  const correct = "CACHE"||"cache;
-  const user = document.getElementById("ans").value.trim().toUpperCase();
+  const CORRECT_ANSWER =  "CACHE"||"cache"; // 👈 change per location
+  const user = document.getElementById("ans").value
+               .trim()
+               .toUpperCase();
 
-  if (user === correct) {
+  if (user === CORRECT_ANSWER) {
+
+    // 🛑 STOP TIMER
     timerStopped = true;
     clearInterval(timerInterval);
 
+    // 🔓 DISABLE ALL ANTI-CHEAT PROTECTION
+    disableProtection();
+
+    // ✅ SAVE SUCCESS TO SHEET
     fetch(${API}?action=solve&team=${team}&page=${PAGE})
       .then(() => {
         document.getElementById("msg").innerText =
           "✅ Correct! Go to quadrangle and search for the next QR.";
       });
+
   } else {
     document.getElementById("msg").innerText = "❌ Wrong answer";
   }
@@ -56,6 +63,7 @@ function check() {
 
 </body>
 </html>
+
 
 
 

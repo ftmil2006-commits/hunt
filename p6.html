@@ -15,18 +15,39 @@ Which data structure does this?
 <p id="msg"></p>
 
 <script>
-function check() {
-  if (ans.value.trim() === "Tree"||ans.value.trim() === "tree") {
-    msg.innerText = "✅ Correct! The next Qr is in the chemistry lab.";
-     document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+
+
+  function check() {
+  const CORRECT_ANSWER = "Tree"; // 👈 change per location
+  const user = document.getElementById("ans").value
+               .trim()
+               .toUpperCase();
+
+  if (user === CORRECT_ANSWER) {
+
+    // 🛑 STOP TIMER
+    timerStopped = true;
+    clearInterval(timerInterval);
+
+    // 🔓 DISABLE ALL ANTI-CHEAT PROTECTION
     disableProtection();
+
+    // ✅ SAVE SUCCESS TO SHEET
+    fetch(${API}?action=solve&team=${team}&page=${PAGE})
+      .then(() => {
+        document.getElementById("msg").innerText =
+          "✅ Correct! The next Qr is in the chemistry lab.";
+      });
+
   } else {
-    msg.innerText = "❌ Wrong.";
+    document.getElementById("msg").innerText = "❌ Wrong answer";
   }
 }
+
 </script>
 
 <script src="secure.js"></script>
 </body>
 </html>
+
 

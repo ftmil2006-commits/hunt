@@ -15,19 +15,30 @@
 <p id="msg"></p>
 
 <script>
-  function check() {
-  const correct =  "CS lab"||"cs lab"||"cs Laboratory"||"CS Laboratory";
-  const user = document.getElementById("ans").value.trim().toUpperCase();
 
-  if (user === correct) {
+
+  function check() {
+  const CORRECT_ANSWER = ""CS lab"||"cs lab"||"cs Laboratory"||"CS Laboratory""; // 👈 change per location
+  const user = document.getElementById("ans").value
+               .trim()
+               .toUpperCase();
+
+  if (user === CORRECT_ANSWER) {
+
+    // 🛑 STOP TIMER
     timerStopped = true;
     clearInterval(timerInterval);
 
+    // 🔓 DISABLE ALL ANTI-CHEAT PROTECTION
+    disableProtection();
+
+    // ✅ SAVE SUCCESS TO SHEET
     fetch(${API}?action=solve&team=${team}&page=${PAGE})
       .then(() => {
         document.getElementById("msg").innerText =
-          "✅ Correct! 😎 come to Cs Lab dude🤗 for last part of this game.";
+          "✅ Correct! 😎 come to Cs Lab dude🤗 for last part of this game."";
       });
+
   } else {
     document.getElementById("msg").innerText = "❌ Wrong answer";
   }
@@ -37,6 +48,7 @@
 <script src="secure.js"></script>
 </body>
 </html>
+
 
 
 

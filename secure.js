@@ -12,6 +12,50 @@ if (!team) {
 }
 
 team = team.trim().toUpperCase();
+let protectionActive = false;
+
+function enableProtection(team, page) {
+  protectionActive = true;
+
+  // Right click
+  window._ctx = e => e.preventDefault();
+  document.addEventListener("contextmenu", window._ctx);
+
+  // Text selection
+  window._sel = e => e.preventDefault();
+  document.addEventListener("selectstart", window._sel);
+
+  // Copy
+  window._copy = e => e.preventDefault();
+  document.addEventListener("copy", window._copy);
+
+  // Ctrl keys
+  window._key = e => {
+    if (e.ctrlKey && ["c", "a", "s", "p"].includes(e.key.toLowerCase())) {
+      e.preventDefault();
+    }
+  };
+  document.addEventListener("keydown", window._key);
+
+  // Tab / app switch
+  window._vis = () => {
+    if (document.hidden && protectionActive) {
+      fetch(`${API}?action=disqualify&team=${team}&page=${page}`);
+      document.body.innerHTML = "<h1>❌ DISQUALIFIED</h1>";
+    }
+  };
+  document.addEventListener("visibilitychange", window._vis);
+}
+
+function disableProtection() {
+  protectionActive = false;
+
+  document.removeEventListener("contextmenu", window._ctx);
+  document.removeEventListener("selectstart", window._sel);
+  document.removeEventListener("copy", window._copy);
+  document.removeEventListener("keydown", window._key);
+  document.removeEventListener("visibilitychange", window._vis);
+}
 
 /******************** DEVICE ID ********************/
 let device = localStorage.getItem("device_id");
@@ -66,9 +110,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector("button").disabled = true;
     document.getElementById("msg").innerText =
       "✅ Answer already accepted. Go to next location.";
-  }
+  }};
 });
-
 /******************** BASIC ANTI-COPY ********************/
 document.addEventListener("contextmenu", e => e.preventDefault());
 document.addEventListener("selectstart", e => e.preventDefault());
@@ -78,5 +121,8 @@ document.addEventListener("keydown", e => {
   if (e.ctrlKey && ["c", "a", "s", "p"].includes(e.key.toLowerCase())) {
     e.preventDefault();
   }
+});
+window.addEventListener("load", () => {
+  enableProtection(team, PAGE);
 });
 

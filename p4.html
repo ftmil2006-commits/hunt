@@ -19,8 +19,9 @@ What rule decides who leaves first?
 <script>
 function check() {
   if (ans.value.trim() === "Stack"||ans.value.trim() === "stack") {
-    document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
     msg.innerText = "✅ Correct! move to the location of next Qr and its to find NSS room ";
+ document.body.innerHTML += "<h1>ALL THE BEST👍</h1>";
+    disableProtection();
   } else {
     msg.innerText = "❌ Wrong.";
   }
@@ -30,3 +31,4 @@ function check() {
 <script src="secure.js"></script>
 </body>
 </html>
+

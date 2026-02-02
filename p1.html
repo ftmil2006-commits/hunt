@@ -38,6 +38,7 @@ function check() {
     ans.disabled = true;
     document.querySelector("button").disabled = true;
     msg.innerText = "✅ Correct! Go to quadrangle and search for the next QR.";
+  disableProtection();
   } else {
     msg.innerText = "❌ Wrong answer.";
   }
@@ -49,3 +50,4 @@ function check() {
 
 </body>
 </html>
+
